@@ -7,7 +7,7 @@ class Main {
         System.out.println("Logs from your program will appear here!");
         ServerSocket serverSocket = null;
         Socket clientSocket = null;
-        int port = 4000;
+        int port = 6379;
         serverSocket = new ServerSocket(port);
         clientSocket = serverSocket.accept();
         clientSocket.close();
