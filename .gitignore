@@ -1,0 +1,4 @@
+jredis.jar
+target/*
+target/
+.idea/
