@@ -1,3 +1,4 @@
+package commands;
 public class Echo implements Command {
 
     @Override

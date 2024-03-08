@@ -17,7 +17,8 @@ class Main {
             serverSocket.setReuseAddress(true);
             while (true) {
                 clientSocket = serverSocket.accept();
-                executorService.submit(new ClientHandler(clientSocket));
+                Thread newThread = new Thread(new ClientHandler(clientSocket));
+                newThread.start();
             }
         } catch (IOException e) {
             System.out.println("IOException: " + e.getMessage());

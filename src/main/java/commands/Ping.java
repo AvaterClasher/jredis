@@ -1,3 +1,4 @@
+package commands;
 public class Ping implements Command {
 
     @Override

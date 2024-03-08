@@ -6,6 +6,10 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
+import commands.Echo;
+import commands.Ping;
+import constants.Constants;
+
 public class ClientHandler implements Runnable {
     private final Socket clientSocket;
 
@@ -47,7 +51,6 @@ public class ClientHandler implements Runnable {
     private void sendResponse(String response) {
         try {
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-            out.print("+PONG\r\n");
             out.print(response);
             out.flush();
         } catch (IOException ex) {
