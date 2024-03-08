@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 import commands.Echo;
 import commands.Ping;
@@ -12,9 +13,11 @@ import constants.Constants;
 
 public class ClientHandler implements Runnable {
     private final Socket clientSocket;
+    private ConcurrentHashMap<String, String> cache;
 
-    public ClientHandler(Socket socket) {
+    public ClientHandler(Socket socket, ConcurrentHashMap<String, String> cache) {
         this.clientSocket = socket;
+        this.cache = cache;
     }
 
     @Override
@@ -33,11 +36,17 @@ public class ClientHandler implements Runnable {
 
                     switch (commands.get(1).toLowerCase()) {
                         case Constants.PING:
-                            sendResponse(new Ping().execute(""));
+                            sendResponse(new Ping().execute(commands, cache));
                             break;
                         case Constants.ECHO:
-                            sendResponse(new Echo().execute(commands.get(3)));
+                            sendResponse(new Echo().execute(commands, cache));
                             break;
+                        // case Constants.GET:
+                        //     sendResponse(new Get().execute(commands, cache));
+                        //     break;
+                        // case Constants.SET:
+                        //     sendResponse(new SetKey().execute(commands, cache));
+                        //     break;
                         default:
                             sendResponse("invalid commands");
                     }
