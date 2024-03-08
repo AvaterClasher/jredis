@@ -10,6 +10,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import commands.Echo;
 import commands.Ping;
 import constants.Constants;
+import commands.Get;
+import commands.SetKey;
 
 public class ClientHandler implements Runnable {
     private final Socket clientSocket;
@@ -41,12 +43,12 @@ public class ClientHandler implements Runnable {
                         case Constants.ECHO:
                             sendResponse(new Echo().execute(commands, cache));
                             break;
-                        // case Constants.GET:
-                        //     sendResponse(new Get().execute(commands, cache));
-                        //     break;
-                        // case Constants.SET:
-                        //     sendResponse(new SetKey().execute(commands, cache));
-                        //     break;
+                        case Constants.GET:
+                            sendResponse(new Get().execute(commands, cache));
+                            break;
+                        case Constants.SET:
+                            sendResponse(new SetKey().execute(commands, cache));
+                            break;
                         default:
                             sendResponse("invalid commands");
                     }
