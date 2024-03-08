@@ -8,8 +8,20 @@ class Main {
         ServerSocket serverSocket = null;
         Socket clientSocket = null;
         int port = 6379;
-        serverSocket = new ServerSocket(port);
-        clientSocket = serverSocket.accept();
-        clientSocket.close();
+        try {
+            serverSocket = new ServerSocket(port);
+            serverSocket.setReuseAddress(true);
+            clientSocket = serverSocket.accept();
+        } catch (IOException e) {
+            System.out.println("IOException: " + e.getMessage());
+        } finally {
+            try {
+                if (clientSocket != null) {
+                    clientSocket.close();
+                }
+            } catch (IOException e) {
+                System.out.println("IOException: " + e.getMessage());
+            }
+        }
     }
 }
