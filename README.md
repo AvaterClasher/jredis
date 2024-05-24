@@ -22,5 +22,3 @@
 Javafully made by ☕
 
 -   Soumyadip Moni ([@avater_clasher](https://github.com/AvaterClasher))
--   Suryansh Trivedi([@suryansh_trivedi](https://github.com/trivedisuryansh))
--   Harshit Shukla([@harshit_shukla](https://github.com/))
